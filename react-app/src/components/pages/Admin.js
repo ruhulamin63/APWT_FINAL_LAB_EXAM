@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 class Admin extends Component{
 
@@ -66,7 +67,26 @@ class Admin extends Component{
                             </div>
 
                             <div className="card-body">
-                                <h2>Hello , Admin</h2>
+                                <h2>Employee Data</h2>
+
+                                <table className="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Username</th>
+                                            <th>Name</th>
+                                            <th>Company Name</th>
+                                            <th>Phone</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+                                        {employee_table}
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+
                                 <Link to={'/'} className="btn btn-primary btn-sm float-end">Back</Link>
                             </div>
                         </div>
