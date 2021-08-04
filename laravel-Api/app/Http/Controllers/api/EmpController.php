@@ -8,6 +8,16 @@ use App\Models\Register;
 
 class EmpController extends Controller
 {
+    public function index(){
+
+        $employee = Register::all();
+
+        return response()->json([
+            'status'=>200,
+            'employees'=>$employee
+        ]);
+    }
+
     public function store(Request $req){
 
         $emp = new Register;
