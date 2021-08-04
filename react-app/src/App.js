@@ -7,6 +7,7 @@ import Login from './components/pages/Login';
 import Admin from './components/pages/Admin';
 import Employee from './components/pages/Employee';
 import AddJob from './components/pages/AddJob';
+import EditEmployee from './components/pages/EditEmployee';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route path="/emp-login" component={Login}/>
         <Route path="/admin" component={Admin}/>
         <Route path="/employee" component={Employee}/>
+        <Route path="/edit-employee" component={EditEmployee}/>
+
         <Route path="/add-job" component={AddJob}/>
       </Switch>
     </Router>
