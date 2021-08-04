@@ -7,6 +7,7 @@ class Register extends Component{
     state = {
         username:'',
         name:'',
+        company_name:'',
         phone:'',
         password:'',
     }
@@ -23,10 +24,11 @@ class Register extends Component{
         const res = await axios.post('http://localhost:8000/api/emp-register', this.state);
 
         if(res.data.status === 200){
-            //console.log(res.data.message);
+            console.log(res.data.message);
             this.setState({
                 username:'',
                 name:'',
+                company_name:'',
                 phone:'',
                 password:'',
             });
@@ -56,6 +58,10 @@ class Register extends Component{
                                     <div className="form-group mb-3">
                                         <lebel>Name</lebel>
                                         <input type="text" name="name" value={this.state.name} className="form-control"  onChange={this.handleInput}/>
+                                    </div>
+                                    <div className="form-group mb-3">
+                                        <lebel>Phone</lebel>
+                                        <input type="text" name="company_name" value={this.state.company_name} className="form-control"  onChange={this.handleInput}/>
                                     </div>
                                     <div className="form-group mb-3">
                                         <lebel>Phone</lebel>
