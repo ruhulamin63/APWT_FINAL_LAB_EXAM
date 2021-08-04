@@ -3,7 +3,56 @@ import { Link } from 'react-router-dom'
 
 class Admin extends Component{
 
+    state = {
+        employee: [],
+        loding: true,
+    }
+
+    async componentDidMount() {
+
+        const res = await axios.get('http://localhost:8000/api/admin');
+
+        //console.log(res);
+
+        if(res.data.status == 200 ){
+            
+            this.setState({
+                employee: res.data.employees,
+                loding: false,    
+            });
+        }
+    }
+
+
+//======================================================================
+
     render(){
+
+        var employee_table = "";
+
+        if(this.state.loding){
+            employee_table = <tr><td colSpan="7"><h2>loding...</h2></td></tr>
+        }else{
+            employee_table = 
+                this.state.employees.map( (item)=> {
+                    return (
+                        <tr key={item.id}>
+                            <td>{item.id}</td>
+                            <td>{item.username}</td>
+                            <td>{item.name}</td>
+                            <td>{item.company_name}</td>
+                            <td>{item.phone}</td>
+
+                            <td>
+                                <Link to={`edit-student/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
+                            </td>
+                            <td>
+                                <button type="submit" className="btn btn-danger btn-sm" onClick={(e)=> this.delectStudent(e, item.id)}>Delete</button>
+                            </td>
+                        </tr>
+                    );
+                });
+        }
 
         return(
             <div ClassName="container">
