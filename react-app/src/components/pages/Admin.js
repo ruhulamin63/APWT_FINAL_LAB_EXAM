@@ -5,22 +5,36 @@ import axios from 'axios';
 class Admin extends Component{
 
     state = {
-        employee: [],
+        employees: [],
         loding: true,
     }
 
     async componentDidMount() {
 
-        const res = await axios.get('http://localhost:8000/api/admin');
+        const res = await axios.get('http://localhost:8000/api/employees');
 
         //console.log(res);
 
         if(res.data.status == 200 ){
             
             this.setState({
-                employee: res.data.employees,
+                employees: res.data.employees,
                 loding: false,    
             });
+        }
+    }
+
+    deleteEmployee = async (e,id)=>{
+
+        const chickDelBtn = e.currentTarget;
+        chickDelBtn.innerText = 'Deleting';
+
+        const res = await axios.delete(`http://localhost:8000/api/delete-employee/${id}`);
+
+        if(res.data.status == 200){
+
+            console.log(res.data.message);
+            chickDelBtn.closest('tr').remove();
         }
     }
 
@@ -45,10 +59,10 @@ class Admin extends Component{
                             <td>{item.phone}</td>
 
                             <td>
-                                <Link to={`edit-student/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
+                                <Link to={`edit-employee/${item.id}`} className="btn btn-success btn-sm">Edit</Link>
                             </td>
                             <td>
-                                <button type="submit" className="btn btn-danger btn-sm" onClick={(e)=> this.delectStudent(e, item.id)}>Delete</button>
+                                <button type="submit" className="btn btn-danger btn-sm" onClick={(e)=> this.deleteEmployee(e, item.id)}>Delete</button>
                             </td>
                         </tr>
                     );

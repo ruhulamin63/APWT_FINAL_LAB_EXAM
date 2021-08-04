@@ -29,11 +29,11 @@ class EditEmployee extends Component{
             //console.log(employee_id);
             
             this.setState({
-                username: res.data.employee.username,
-                name: res.data.employee.name,
-                company_name: res.data.employee.company_name,
-                phone: res.data.employee.phone,
-                password: res.data.student.password,
+                username: res.data.username,
+                name: res.data.name,
+                company_name: res.data.company_name,
+                phone: res.data.phone,
+                password: res.data.password,
             });
         }
     }

@@ -13,6 +13,7 @@ class Register extends Model
     protected $fillabel = [
         'username',
         'name',
+        'company_name',
         'phone',
         'password',
     ];
